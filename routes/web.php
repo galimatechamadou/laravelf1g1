@@ -35,6 +35,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/abonnement/expired', "AbonnementController@expired");
+
 Route::middleware(["auth",'can:admin'])->prefix('admin')->group(function(){
     Route::get('/', 'AdminController@index');
 });
