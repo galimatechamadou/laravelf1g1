@@ -4,7 +4,7 @@
     <div class="container">
         <div><h1>Edition d'une catégorie</h1></div>
         <div class="container">
-            <form action="/categories/{{$category->id}}" method="post">
+            <form id="category_form" action="/categories/{{$category->id}}" method="post">
                 @csrf
                 @method('patch')
                 <div>
@@ -20,6 +20,25 @@
                 </div>
             </form>
         </div>
-
     </div>
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+    <script defer>
+        let form = document.getElementById("category_form");
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let donnees_formulaire = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: '/edit_category',
+                data: donnees_formulaire,
+                success: function(data){
+                    window.location.href = '{{url('/categories')}}'
+                }
+            });
+        })
+    </script>
 @endsection

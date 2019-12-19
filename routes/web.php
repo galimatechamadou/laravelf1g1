@@ -40,3 +40,7 @@ Route::get('/abonnement/expired', "AbonnementController@expired");
 Route::middleware(["auth",'can:admin'])->prefix('admin')->group(function(){
     Route::get('/', 'AdminController@index');
 });
+
+Route::post('/getmsg', 'AjaxController@index');
+Route::patch('/edit_category', 'AjaxController@edit_category');
+Route::post('/ajout_category', 'AjaxController@ajout_category');
