@@ -16,4 +16,8 @@ class Product extends Model
     public function orders(){
         return $this->belongsToMany('App\Order');
     }
+
+    public function seller(){
+        return $this->belongsTo(\App\Seller::class);
+    }
 }

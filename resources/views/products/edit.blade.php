@@ -20,7 +20,6 @@
                 </div>
                 <div>
                     <textarea name="description" id="description" cols="30" rows="10" class="description form-control" placeholder="La description">{{$product->description}}</textarea>
-                    <textarea class="description" name="description"></textarea>
                 </div>
                 <div>
                     <select name="category_id" id="category_id" class="form-control">

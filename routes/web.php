@@ -27,6 +27,8 @@ Route::get("/product/edit/{id}", "ProductsController@edit")->name("editer_produi
 
 Route::patch("/product/edit/{id}", "ProductsController@update")->name('updater_produit');
 
+Route::get("/produit/{id}/show", 'ProductsController@show');
+
 Route::resource('product', 'ProductsController');
 
 Route::delete('product/{id}', 'ProductsController@destroy');

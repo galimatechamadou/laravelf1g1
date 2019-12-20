@@ -34,7 +34,7 @@ class ProductsController extends Controller
 
     public function index()
     {
-        $this->authorize('admin');
+        //$this->authorize('admin');
         $products = \App\Product::orderBy('created_at', 'DESC')->get();
         return view('products.index', compact('products'));
     }
@@ -89,7 +89,8 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        return view("products.show", compact('product'));
     }
 
     /**
