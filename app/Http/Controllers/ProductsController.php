@@ -71,7 +71,6 @@ class ProductsController extends Controller
         $produit->price         = $request->input('price');
         $produit->description   = $request->input('description');
         $produit->category_id   = $request->input('category_id');
-        $produit->user_name     = Auth::id();
         $produit->save();
         return redirect(route('product.index'));
     }
@@ -87,9 +86,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $product = Product::find($id);
+        $product = Product::where('slug',$slug)->first();
         return view("products.show", compact('product'));
     }
 

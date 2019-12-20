@@ -23,10 +23,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        $products = Product::paginate(6);
-        $categories = null;
-        return view('home', compact('products','categories'));
+    public function index(){
+        $products = Product::all()->take(6);//paginate(6);
+        return view('home', compact('products'));
     }
 }

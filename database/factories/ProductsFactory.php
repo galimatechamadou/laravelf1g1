@@ -11,7 +11,7 @@ $factory->define(Product::class, function (Faker $faker) {
     $category = App\Category::all()->random(1)->first();
     return [
         'name'          => $faker->words(2,true),
-        'description'   => $faker->paragraphs(3),
+        'description'   => $faker->paragraphs(3,true),
         'price'         => $faker->numberBetween(100, 9999999),
         'seller_id'     => $seller->id,
         'category_id'   => $category->id

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -19,5 +20,17 @@ class Product extends Model
 
     public function seller(){
         return $this->belongsTo(\App\Seller::class);
+    }
+    public function checkSlug($slug){
+        while(!Product::select('slug')->where('slug','like',$slug.'%')->get()->isEmpty()){
+            $slug = Str::slug($slug, '_');
+        }
+        return $slug;
+    }
+    public static function boot(){
+        parent::boot();
+        static::saving(function($model){
+            $model->slug = $model->checkSlug(Str::slug($model->name));
+        });
     }
 }
