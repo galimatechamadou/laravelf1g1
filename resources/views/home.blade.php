@@ -47,43 +47,25 @@
         </div>
     </div>
 </header>
-<div class="row">
-    <div class="col-12">
-        <div id="msg">Nous allons changer ce text avec Ajax. Cliquez sur ke bouton</div>
+<div class="container">
+    <h2>Nos derniers produits</h2>
+    <div class="row">
+        @foreach($products as $product)
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="{{$product->images ?? asset('uploads/images/default.png')}}" height="250" width="250" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#">{{$product->name}}</a>
+                    </h4>
+                    <p class="card-text">{!! \Illuminate\Support\Str::words($product->description, 25,'....')  !!}</p>
+                </div>
+            </div>
+        </div>
+        @endforeach
         <div>
-            <form action="">
-                <button type="submit" class="btn btn-primary" id="changeur">Remplacer le text</button>
-            </form>
+            <nav aria-label="...">{{$products->links()}}</nav>
         </div>
     </div>
 </div>
-<script
-    src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-<script !src="" defer>
-    let btn = document.getElementById('changeur');
-    btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        alert("Ici");
-        $.ajax({
-            type: "POST",
-            url: '/getmsg',
-            data: "_token=<?php echo csrf_token() ?>",
-            success: function(data){
-                $("#msg").html(data.msg);
-            }
-        });
-    })
-    function getMessage(){
-        $.ajax({
-            type: "POST",
-            url: '/getmsg',
-            data: "_token=<?php echo csrf_token() ?>",
-            success: function(data){
-                $("#msg").html(data.msg);
-            }
-        });
-    }
-</script>
 @endsection
