@@ -19,8 +19,7 @@ class ProductsController extends Controller
      */
     public function __construct()
     {
-       // $this->middleware('auth')->except('index');
-        #$this->authorize('admin');
+        $this->middleware(['auth','can: admin']);
     }
 
     /**
@@ -28,6 +27,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
+        #$this->authorize('admin')->except('show');
         $categories = \App\Category::pluck('name','id');
         return view('products.create', compact('categories'));
     }
@@ -74,6 +74,7 @@ class ProductsController extends Controller
         $produit->save();
         return redirect(route('product.index'));
     }
+
     public function uploadImage(UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null){
         $name = !is_null($filename) ? $filename : str_random('25');
         $file = $uploadedFile->storeAs($folder, $name.'.'.$uploadedFile->getClientOriginalExtension(), $disk);
@@ -93,7 +94,7 @@ class ProductsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form fr eoditing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

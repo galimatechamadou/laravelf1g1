@@ -72,6 +72,9 @@
                                     @can('admin')
                                         <a class="dropdown-item" href="/admin/"><i class="fas fa-shield-alt"></i> Back Office</a>
                                     @endcan
+                                    @can('seller')
+                                        <a class="dropdown-item" href="/admin/"><i class="fas fa-shield-alt"></i> Boutique</a>
+                                    @endcan
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

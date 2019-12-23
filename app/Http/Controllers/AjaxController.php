@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class AjaxController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('verified');
+    }
+
     public function index(){
         $msg = "Ceci est le new message";
         return response()->json(array('msg' => $msg), 200);

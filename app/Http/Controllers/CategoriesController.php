@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('verified');
+        $this->authorize('admin');
+        $this->authorize('seller');
+    }
+
     public function index(){
         $categories = Category::orderBy('created_at','DESC')->get();
         return view('categories.index', compact('categories'));

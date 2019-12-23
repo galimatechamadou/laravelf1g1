@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/welcome';
 
     /**
      * Create a new controller instance.
@@ -70,6 +70,11 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     *
+     * Ici j'utilise un autre formulaire different du formulaire par defaut de laravel
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showRegistrationForm()
     {
         return view('myAuth.register');

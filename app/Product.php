@@ -30,7 +30,7 @@ class Product extends Model
     public static function boot(){
         parent::boot();
         static::saving(function($model){
-            $model->slug = $model->checkSlug(Str::slug($model->name));
+            $model->slug = Str::slug($model->name);
         });
     }
 }

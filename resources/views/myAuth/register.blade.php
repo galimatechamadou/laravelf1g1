@@ -20,13 +20,6 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror input100" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('E-Mail Address') }}">
-                <span class="focus-input100"></span><span class="symbol-input100"><i class="fa fa-at" aria-hidden="true"></i></span>
-                @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
         </div>
         <div class="wrap-input100 validate-input">
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror input100" name="password" required autocomplete="new-password" placeholder="{{__('Password')}}">

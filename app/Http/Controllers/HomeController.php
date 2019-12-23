@@ -16,6 +16,7 @@ class HomeController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
+        $this->middleware('verified')->only('welcome');
     }
 
     /**
@@ -24,6 +25,11 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
+        $products = Product::all()->take(6);//paginate(6);
+        return view('home', compact('products'));
+    }
+
+    public function welcome(){
         $products = Product::all()->take(6);//paginate(6);
         return view('home', compact('products'));
     }

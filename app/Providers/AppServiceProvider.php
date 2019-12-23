@@ -21,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('moderator', function(User $user){
             return $user->isModerator();
         });
+        Gate::define('seller', function(User $user){
+            return $user->isSeller();
+        });
     }
 
     /**

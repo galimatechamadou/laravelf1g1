@@ -54,9 +54,15 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Cett méthode va determiner si le user connecté a un role moderator
+     * Cette méthode va determiner si le user connecté a un role moderator
      */
     public function isModerator(){
         return strtolower(@$this->roles) === 'moderator'? true : false;
+    }
+    /**
+     * Cette méthode va determiner si le user connecté a un role commercant
+     */
+    public function isSeller(){
+        return strtolower(@$this->roles) === 'seller'? true : false;
     }
 }
