@@ -46,6 +46,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\User','parent_id','id');
     }
 
+    public function seller(){
+        return $this->hasOne(Seller::class);
+    }
+
     /**
      * Cette méthode va determiner si le user connecté a un role admin
      */

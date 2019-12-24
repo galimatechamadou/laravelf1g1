@@ -32,7 +32,7 @@ Route::middleware(["can:seller"])->prefix('seller')->group(function(){
 Route::middleware(['can:admin'])->prefix('admin')->group(function(){
     Route::get('/', 'AdminController@index');
     Route::get('/dashboard', 'AdminController@index');
-
+    Route::resource('/seller', 'SellerController');
     /*Route::get("/categories", "CategoriesController@index")->name('categories.index');
     Route::get('/categories/form','CategoriesController@create')->name('categories.create');
     Route::post('/categorie/traitement','CategoriesController@store');*/
