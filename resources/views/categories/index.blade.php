@@ -1,12 +1,9 @@
-@extends('layouts.design')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
         <div>
-            <p><a href="{{route('categories.create')}}">Ajouter une category</a></p>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_category">
-                Ajouter une category
-            </button>
+            <p><a href="{{route('categories.create')}}" class="btn btn-success">Ajouter une category</a></p>
         </div>
         <table class="table table-striped" id="category_table">
             <tr>
@@ -23,8 +20,8 @@
                     </td>
                     <td>
                         <div class="row justify-content-end">
-                        <div class="col"><a href="/categories/{{$category->id}}/edit" class="btn btn-primary">Editer</a></div>
-                        <form class="col" action="/categories/{{$category->id}}" method="post">
+                        <div class="col"><a href="/admin/categories/{{$category->id}}/edit" class="btn btn-primary">Editer</a></div>
+                        <form class="col" action="/admin/categories/{{$category->id}}" method="post">
                             @csrf @method('delete')
                             <button type="submit" class="btn btn-danger">Suppimer</button>
                         </form>
@@ -69,7 +66,7 @@
                 let donnees_formulaire = $(this).serialize();
                 $.ajax({
                     type: "POST",
-                    url: '/ajout_category',
+                    url: '/admin/ajout_category',
                     data: donnees_formulaire,
                     success: function(data){
                         alert("Category ajoutée");

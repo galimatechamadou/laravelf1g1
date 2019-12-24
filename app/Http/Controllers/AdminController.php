@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Product;
+use App\Seller;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,7 +16,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $product_count = Product::all()->count();
+        $categories_count = Category::all()->count();
+        $sellers_count = Seller::all()->count();
+        return view('admin.index',compact('product_count', 'categories_count', 'sellers_count'));
     }
 
     /**

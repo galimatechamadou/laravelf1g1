@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
@@ -9,7 +9,7 @@
         @endif
         <div><h2>{{__('Modification d\'un produit')}}</h2><a href="{{route('product.index')}}">Retourner sur la liste</a></div>
         <div class="container">
-            <form action="{{route('updater_produit',['id'=>$product->id])}}" method="post" enctype="multipart/form-data">
+            <form action="/admin/product/{{$product->id}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('patch')
                 <div>

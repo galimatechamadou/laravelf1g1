@@ -19,7 +19,7 @@ class ProductsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','can: admin']);
+        $this->middleware(['auth','can:admin']);
     }
 
     /**
@@ -35,7 +35,7 @@ class ProductsController extends Controller
     public function index()
     {
         //$this->authorize('admin');
-        $products = \App\Product::orderBy('created_at', 'DESC')->get();
+        $products = \App\Product::orderBy('created_at', 'DESC')->paginate(6);
         return view('products.index', compact('products'));
     }
 

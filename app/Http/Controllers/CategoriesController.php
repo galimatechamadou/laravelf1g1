@@ -9,9 +9,9 @@ class CategoriesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('verified');
+        /*$this->middleware('verified');
         $this->authorize('admin');
-        $this->authorize('seller');
+        $this->authorize('seller');*/
     }
 
     public function index(){

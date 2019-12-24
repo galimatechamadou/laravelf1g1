@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
     <div>
         <p>
-            <a href="{{route('product.create')}}">Ajouter un produit</a>
-            <a href="/">Accueil</a>
+            <a href="{{route('product.create')}}" class="btn btn-primary">Ajouter un produit</a>
         </p>
     </div>
     <table class="table table-striped">
@@ -21,15 +20,18 @@
                 <th>{{$product->name}} - <img src="{{$product->images ? asset($product->images) : asset('uploads/images/default.png')}}" alt="{{$product->name}}" width="50"></th>
                 <th>{{$product->price}} {{ $product->category->name ?? '' }}</th>
                 <th>
-                    <p><a href="{{route('editer_produit',['id'=>$product->id])}}" class="btn btn-primary">Editer</a></p>
-                    <form action="product/{{$product->id}}" method="post">
+                    <div class="row justify-content-around">
+                    <p><a href="/admin/product/{{$product->id}}/edit" class="btn btn-primary "><i class="fa  fa-pen-alt"></i> Editer</a></p>
+                    <form action="/admin/product/{{$product->id}}" method="post">
                         @csrf
                         @method('delete')
-                        <input type="submit" class="btn btn-danger" name="delete" value="Supprimer">
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Supprimer</button>
                     </form>
+                    </div>
                 </th>
             </tr>
         @endforeach
     </table>
+    <div class="text-center">{{$products->links()}}</div>
 </div>
 @endsection

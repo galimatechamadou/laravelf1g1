@@ -33,10 +33,10 @@
             let donnees_formulaire = $(this).serialize();
             $.ajax({
                 type: "POST",
-                url: '/edit_category',
+                url: '/admin/edit_category',
                 data: donnees_formulaire,
                 success: function(data){
-                    window.location.href = '{{url('/categories')}}'
+                    window.location.href = '{{url('/admin/categories')}}'
                 }
             });
         })

@@ -38,10 +38,10 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     public function redirectTo(){
-        if(auth()->user()->is_admin){
-            return '/admin/dashboard';
-        } else if(auth()->user()->is_authenticated){
-            return '/product';
+        if(auth()->user()->isAdmin()){
+            return '/admin';
+        } else if(auth()->user()->isSeller()){
+            return '/seller';
         } else {
             return '/';
         }
