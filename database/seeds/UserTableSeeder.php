@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -15,7 +14,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = new Faker();
         DB::table('users')->insert(
            [
                 [
