@@ -21,7 +21,7 @@ class Product extends Model
     public function seller(){
         return $this->belongsTo(\App\Seller::class);
     }
-    public function checkSlug($slug){
+    public function slugGenerator($slug){
         while(!Product::select('slug')->where('slug','like',$slug.'%')->get()->isEmpty()){
             $slug = Str::slug($slug, '_');
         }
@@ -30,7 +30,7 @@ class Product extends Model
     public static function boot(){
         parent::boot();
         static::saving(function($model){
-            $model->slug = Str::slug($model->name);
+            $model->slug = $model->slugGenerator(Str::slug($model->name));
         });
     }
 }

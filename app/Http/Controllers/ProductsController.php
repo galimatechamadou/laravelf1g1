@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str ;
 
@@ -19,7 +20,7 @@ class ProductsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','can:admin']);
+        $this->middleware(['auth','can:admin'])->except(['category']);
     }
 
     /**
@@ -157,5 +158,16 @@ class ProductsController extends Controller
         if($product)
             $product->delete();
         return redirect()->route('product.index');
+    }
+
+    public function category($slug){
+        $products = DB::table('products')
+                        ->join('categories', 'products.category_id', '=', 'categories.id')
+                        ->select('categories.name as category','products.name','products.description','products.images','products.price')
+                        ->orWhere('categories.slug','like',"$slug%")
+                        ->orWhere('categories.id',"$slug")
+                        ->get();
+        return view('products.categories',compact('products'));
+        //formationWeb1
     }
 }

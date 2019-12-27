@@ -1,10 +1,10 @@
-@extends('layouts.design')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
         <div><p><a href="{{route('categories.index')}}">liste des catégorie</a></p></div>
         <div class="container">
-            <form action="/categorie/traitement" method="post" id="category_form">
+            <form action="/admin/categories/" method="post" id="category_form">
                 @csrf
                 <div>
                     <input type="text" name="name" class="form-control">
@@ -23,7 +23,7 @@
         src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
-    <script defer>
+  {{--  <script defer>
         let form = document.getElementById("category_form");
         form.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -39,4 +39,5 @@
                 }
             });
         })
+    </script>--}}
 @endsection

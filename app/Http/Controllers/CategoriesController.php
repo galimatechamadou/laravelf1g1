@@ -9,9 +9,9 @@ class CategoriesController extends Controller
 {
     public function __construct()
     {
-        /*$this->middleware('verified');
-        $this->authorize('admin');
-        $this->authorize('seller');*/
+        /*$this->middleware('verified');*/
+        $this->middleware(['can:admin', 'can:seller']);
+        //$this->authorize('seller');//*/
     }
 
     public function index(){
@@ -31,7 +31,7 @@ class CategoriesController extends Controller
         $name = $request->input('name');
         $on_menu = $request->input('on_menu') ?? 0;
         Category::updateOrCreate(['name'=>$name,'on_menu' => $on_menu]);
-        return redirect('/categories')->with(['success' => 'Category enregistrée']);
+        return redirect()->route('categories.index')->with(['success' => 'Category enregistrée']);
     }
 
     public function edit(Category $category){

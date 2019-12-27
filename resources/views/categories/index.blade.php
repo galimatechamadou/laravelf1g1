@@ -16,7 +16,7 @@
                     <td>#</td>
                     <td>
                         {{$category->name}}
-                        {!! $category->badgeOnMenu()!!}
+                        {!! $category->badgeOnMenu()!!} - {{$category->slug ?? ''}}
                     </td>
                     <td>
                         <div class="row justify-content-end">
@@ -59,7 +59,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-        <script defer>
+    {{--<script defer>
             let form = document.getElementById("category_form");
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
@@ -77,5 +77,5 @@
                     }
                 });
             })
-        </script>
+        </script>--}}
 @endsection

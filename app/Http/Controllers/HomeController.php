@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Parent_;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
+        $sliderProducts = Product::orderBy('created_at', 'DESC')->select('name','images','price')->take(3)->get();
         $products = Product::all()->take(6);//paginate(6);
-        return view('home', compact('products'));
+        return view('home', compact('products','sliderProducts'));
     }
 
     public function welcome(){

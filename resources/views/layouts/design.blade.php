@@ -38,55 +38,47 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
+                    @foreach(\App\Helpers\Aides::menu() as $mn)
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">Accueil</a>
+                        <a class="nav-link" href="/products/category/{{$mn->slug ?? $mn->id}}">{{$mn->name}}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="services.html">Habillement</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Electromenager</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Vehicules</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Immobilier</a>
-                    </li>
+                    @endforeach
+
+                </ul>
+                <ul class="navbar-nav ml-auto">
                     @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @can('admin')
+                                    <a class="dropdown-item" href="/admin/"><i class="fas fa-shield-alt"></i> Back Office</a>
+                                @endcan
+                                @can('seller')
+                                    <a class="dropdown-item" href="/admin/"><i class="fas fa-shield-alt"></i> Boutique</a>
+                                @endcan
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @can('admin')
-                                        <a class="dropdown-item" href="/admin/"><i class="fas fa-shield-alt"></i> Back Office</a>
-                                    @endcan
-                                    @can('seller')
-                                        <a class="dropdown-item" href="/admin/"><i class="fas fa-shield-alt"></i> Boutique</a>
-                                    @endcan
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
                 </ul>
             </div>
             </div>
