@@ -22,8 +22,9 @@ class Product extends Model
         return $this->belongsTo(\App\Seller::class);
     }
     public function slugGenerator($slug){
+        $i = 0;
         while(!Product::select('slug')->where('slug','like',$slug.'%')->get()->isEmpty()){
-            $slug = Str::slug($slug, '_');
+            $slug = Str::slug($slug, '_')."_".++$i;
         }
         return $slug;
     }

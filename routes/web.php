@@ -11,7 +11,11 @@
 */
 Route::get('/', "HomeController@index");
 Route::get("/products/{id}", "HomeController@show");
+Route::get("/produit/{slug}/show", 'ProductsController@show');
 Route::get("/products/category/{slug}", "ProductsController@category");
+Route::post('/product/add_to_cart', "AjaxController@add_to_cart");
+Route::get('/cart', "ProductsController@cart");
+
 Auth::routes(['verify'=>true]);
 Route::get('/home', 'HomeController@index')->name('home');
 //dans le controller register nous allons rediriger vers ce lien apres la creation d'un compte. Pour que cela fonctionne nous avons remplace protected $redirectTo = '/home'; par protected $redirectTo = '/welcome';

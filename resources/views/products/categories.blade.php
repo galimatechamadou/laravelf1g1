@@ -16,9 +16,9 @@
                     </div>
                 </div>
             @endforeach
-            {{--<div>
+            <div>
                 <nav aria-label="...">{{$products->links()}}</nav>
-            </div>--}}
+            </div>
         </div>
     </div>
 @endsection

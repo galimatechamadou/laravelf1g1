@@ -17,9 +17,15 @@
             <!-- /.col-lg-8 -->
             <div class="col-lg-7">
                 <p>{!!$product->description!!}</p>
-                <a class="btn btn-primary" href="/produit/{{$product->id}}/show">Call to Action!</a>
+                <form action="#" id="{{'product_'.$product->id}}" class="add-to-cart">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::id()}}">
+                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                    <button type="submit" class="btn btn-primary btn-fancy" href="/produit/{{$product->id}}/show">Ajouter au panier</button>
+                </form>
             </div>
             <!-- /.col-md-4 -->
         </div>
     </div>
+
 @endsection

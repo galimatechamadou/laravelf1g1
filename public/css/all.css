@@ -104,6 +104,12 @@ footer.bg-dark {
     background-color: #0f0f0f !important;
 }
 
+.btn-primary.btn-fancy {
+    color: #fff;
+    background-color: #17ab89;
+    border-color: #04593f;
+}
+
 /*!
  * Start Bootstrap - SB Admin v5.1.1 (https://startbootstrap.com/template-overviews/sb-admin)
  * Copyright 2013-2019 Start Bootstrap

@@ -20,7 +20,7 @@ class ProductsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','can:admin'])->except(['category']);
+        $this->middleware(['auth','can:admin'])->except(['category','show','cart']);
     }
 
     /**
@@ -91,7 +91,10 @@ class ProductsController extends Controller
     public function show($slug)
     {
         $product = Product::where('slug',$slug)->first();
-        return view("products.show", compact('product'));
+        if($product)
+            return view("products.show", compact('product'));
+        else
+            return redirect('/');
     }
 
     /**
@@ -165,9 +168,15 @@ class ProductsController extends Controller
                         ->join('categories', 'products.category_id', '=', 'categories.id')
                         ->select('categories.name as category','products.name','products.description','products.images','products.price')
                         ->orWhere('categories.slug','like',"$slug%")
-                        ->orWhere('categories.id',"$slug")
-                        ->get();
+                        ->orWhere('categories.id',"$slug")->paginate(6);
         return view('products.categories',compact('products'));
         //formationWeb1
     }
+
+    public function cart(Request $request){
+        $cart = $request->session()->get('cart');
+        //dd($cart['products']);
+        return view('products.cart', compact('cart'));
+    }
+
 }
