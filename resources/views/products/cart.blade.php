@@ -32,7 +32,7 @@
                             </td>
                             <td>
                                 <div class="checkout_btn_inner d-flex align-items-center">
-                                    <a class="btn btn-primary" href="#">Confirmer la commande</a>
+                                    <a class="btn btn-primary" href="/checkout">Confirmer la commande</a>
                                 </div>
                             </td>
                         </tr>

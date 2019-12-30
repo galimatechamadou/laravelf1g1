@@ -14,7 +14,9 @@ Route::get("/products/{id}", "HomeController@show");
 Route::get("/produit/{slug}/show", 'ProductsController@show');
 Route::get("/products/category/{slug}", "ProductsController@category");
 Route::post('/product/add_to_cart', "AjaxController@add_to_cart");
-Route::get('/cart', "ProductsController@cart");
+Route::get('/cart', "OrdersController@cart");
+Route::get('/checkout', 'OrdersController@checkout');
+Route::get('/success_cart', 'OrdersController@/success_cart');
 
 Auth::routes(['verify'=>true]);
 Route::get('/home', 'HomeController@index')->name('home');

@@ -10,7 +10,7 @@ class AjaxController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('verified')->except('add_to_cart');
+        $this->middleware('auth')->except('add_to_cart');
     }
 
     public function index(){

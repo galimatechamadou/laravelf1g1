@@ -12,6 +12,13 @@
                                 <a href="/produit/{{$product->category}}/show">{{$product->name}}</a>
                             </h4>
                             <p class="card-text">{!! \Illuminate\Support\Str::words($product->description, 25,'....')  !!}</p>
+                            <form action="#" id="{{'product_'.$product->id}}" class="add-to-cart">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::id()}}">cart.proudctsproudcts
+                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                <input type="hidden" name="price" value="{{$product->price}}">
+                                <button type="submit" class="btn btn-primary btn-fancy" href="/produit/{{$product->id}}/show">Ajouter au panier</button>
+                            </form>
                         </div>
                     </div>
                 </div>

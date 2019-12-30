@@ -59,8 +59,8 @@ $('form.add-to-cart').submit(function (e) {
                     showCancelButton: false,
                     focusConfirm: false,
                     confirmButtonText:
-                        '<i class="fa fa-thumbs-up"></i> Continuer!',
-                    confirmButtonAriaLabel: 'Continuer'
+                        '<i class="fa fa-thumbs-up"></i> Ajouter d\'autres produits!',
+                    confirmButtonAriaLabel: 'Ajouter d\'autres produits!'
                 });
             }else{
                 console.log("il y une erreur");
