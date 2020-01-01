@@ -67,7 +67,7 @@ $('form.add-to-cart').submit(function (e) {
             }
         }
     })
-})
+});
 /*form.addEventListener('submit', function (e) {
     e.preventDefault();
     let donnees_formulaire = $(this).serialize();
