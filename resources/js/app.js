@@ -44,7 +44,7 @@ $('form.add-to-cart').submit(function (e) {
     //alert(form_data);
     $.ajax({
         type: "POST",
-        url: '/product/add_to_cart',
+        url: 'web',
         data: form_data,
         success: function (data) {
             if(data.success){

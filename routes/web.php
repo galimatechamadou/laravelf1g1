@@ -9,6 +9,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Mail\HelloMail;
+use Illuminate\Support\Facades\Mail;
+use App\Notifications\InvoicePaid;
+use App\User;
+
+Route::get('test_mail', function(){
+    $user = User::first();
+    $user->notify(new InvoicePaid($user));
+    //Mail::to("amadou@mail.com")->send(new HelloMail());
+    return new HelloMail();
+});
 Route::get('/', "HomeController@index");
 Route::get("/products/{id}", "HomeController@show");
 Route::get("/produit/{slug}/show", 'ProductsController@show');
